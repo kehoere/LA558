@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript Intro</title>
+<style type="text/css">
+body {
+	background-color: #E9E9E9;
+}
+#myDiv1 {
+	width: 250px;
+	height: 200px;
+	float:left;
+	border: thin solid #000000;
+	background-color: #DFFF00;
+}
+#myDiv2 {
+	width: 250px;
+	height: 200px;
+	float:left;
+	border: thin solid #000000;
+	background-color: #FF0004;
+}
+
+#theResult {
+	background-color: #F29293;
+}
+
+.clearFloat {
+	clear: left;
+}
+
+</style>
+
+<!--An external js file FROM http://jscolor.com/ -->
+<script type="text/javascript" src="jscolor/jscolor.js"></script>
+
+<!--An internal js file-->
+<script type="text/javascript">
+
+//replace text function
+function replaceText() {
+	document.getElementById("myDiv1").innerHTML = "Hello";
+	document.getElementById("myDiv2").innerHTML = "Goodbye";
+}
+
+
+function replaceTextValue(x) {
+		document.getElementById("myDiv2").innerHTML = x;
+		document.getElementById("myDiv1").innerHTML = '';
+}
+
+
+//swap color function
+function swapColor() {
+//This will not work in IE < verion 9.
+	var elem1 = document.getElementById("myDiv1");
+	var color1 = window.getComputedStyle(elem1, null).getPropertyValue("background-Color");
+	
+	var elem2 = document.getElementById("myDiv2");
+	var color2 = window.getComputedStyle(elem2, null).getPropertyValue("background-Color");
+	console.log(color1+" "+color2);
+	
+	
+	var el = document.getElementById("myDiv1");
+	//el.style.color = "red";
+	//el.style.fontSize = "15px";
+	el.style.backgroundColor = color2;
+	
+	var el = document.getElementById("myDiv2");
+	el.style.backgroundColor = color1;
+}
+
+//set color function
+function changeColor(x) {
+
+	if (x == 1){
+		var el = document.getElementById("myDiv1");
+	}else{
+		var el = document.getElementById("myDiv2");
+	}
+	
+	newColor = document.getElementById("newColor").value;
+	
+	newColor = "#"+newColor;
+	
+	el.style.backgroundColor = newColor;
+}
+
+
+
+
+
+//calculator function
+function calculate() {
+	var input1 = parseInt(document.getElementById("input1").value);
+	var operator = document.getElementById("operator").value;
+	var input2 = parseInt(document.getElementById("input2").value);
+		
+	switch(operator){
+		case '+':
+			result = input1 + input2;
+			break;
+		case '-':
+			result = input1 - input2;
+			break;
+		case '*':
+			result = input1 * input2;
+			break;
+		case '/':
+			 result = input1 / input2;
+			 break;
+		default:
+			//code to be executed if n is different from case 1 and 2
+			result = "There is an error.";
+	}
+	document.getElementById("theResult").innerHTML=result;
+}
+
+
+</script>
+
+
+
+</head>
+
+<body>
+
+<h2>Practicing JavaScript</h2>
+<p>&nbsp;</p>
+<button onclick="replaceText()">Replace Text by ID</button> 
+<button onclick="replaceTextValue('Go Cyclones')">Go</button> 
+<button onclick="replaceTextValue('Beat Iowa')">Beat</button> 
+<button onclick="swapColor()">Swap Color</button> 
+<button onclick="changeColor('1')">Change Color 1</button> 
+<button onclick="changeColor('2')">Change Color 2</button> 
+<input name="newColor" class="color" id="newColor" size="5">
+
+
+<br>
+<br>
+<br>
+<div id="myDiv1">Content for  "myDiv1" Goes Here</div>
+<div id="myDiv2">Content for  "myDiv2" Goes Here</div>
+
+
+<p class="clearFloat"></p>
+
+
+    <br>
+    <input name="input1" type="text" id="input1" size="3">
+    <select name="operator" id="operator">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select>
+    <input name="input2" type="text" id="input2" size="3">
+    <br>
+    <br>
+<button onclick="calculate()">add</button>
+    result = <span id="theResult">theResult</span>
+
+
+
+<br><br><br>
+</body>
+</html>
