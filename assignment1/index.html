@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>My First JavaScript</h1>
+  
+<h2>Function</h2>
+
+<p>This example calls a function which performs a calculation, and returns the result:</p>
+
+<p id="demo"></p>
+
+<script>
+function myFunction(p1, p2) {
+  return p1 * p2;
+}
+document.getElementById("demo").innerHTML = myFunction(10, 10);
+</script>
+  <br>
+  
+  
+<h2>Array</h2>
+
+<p id="zoo"></p>
+
+<script>
+var zooAnimals = ["Giraffe", "Elephant", "Lion"];
+document.getElementById("zoo").innerHTML = zooAnimals;
+</script>
+  
+  <br>
+  
+<h2>Object</h2>
+
+<p id="dog"></p>
+
+<script>
+// Create an object:
+var person = {firstName:"Athena", age:6};
+
+// Display some data from the object:
+document.getElementById("dog").innerHTML =
+person.firstName + " is " + person.age + " months old.";
+</script>
+ 
+<br>
+  
+  
+<h2>Loop</h2>
+
+<p id="reptiles"></p>
+
+<script>
+var reptiles = ["Turtle", "Chameleon", "Crocodile", "Gecko", "Snake"];
+var text = "";
+var i;
+for (i = 0; i < reptiles.length; i++) {
+  text += reptiles[i] + "<br>";
+}
+document.getElementById("reptiles").innerHTML = text;
+</script>
+  
+<br>
+  
+  
+  
+  <h2>If Then Or Case</h2>
+
+<p id="date">Did you know... elephants love to eat tree bark?!</p>
+
+<script>
+if (new Date().getHours() < 12) {
+  document.getElementById("date").innerHTML = "Did you know... giraffes are 15-20ft tall?!";
+}
+</script>
+  
+   <br>
+  
+  
+  
+  <h2>Button</h2>
+  
+  <strong>What is your favorite domestic animal?</strong><br>
+
+<form>
+  <input type="radio" name="animal" value="dog" checked> dog<br>
+  <input type="radio" name="animal" value="cat"> cat<br>
+  <input type="radio" name="animal" value="other"> Other  
+</form> 
+  
+
+
+  <br>
+  
+ <h2>Output of the input</h2>
+   
+  <strong>What is your favorite animal?</strong><br>
+
+  Animal Name: <input 
+  type="text" 
+  id="animalName" 
+  onchange="changeFunction(this.value)">
+  <br><br>
+
+  
+<div id="display"></div>
+ 
+  <br>
+  
+ <h2>Two user input fields</h2>
+  
+  <strong>What type of animal do you own?</strong><br>
+
+<input type="checkbox" name="animal" value="fish">fish<br>
+<input type="checkbox" name="animal" value="lizard">lizard <br>
+  <input type="checkbox" name="animal" value="other">other 
+  
+  <br>
+
+</body>
+</html> 
