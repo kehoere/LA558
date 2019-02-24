@@ -1,17 +1,9 @@
 
 <!DOCTYPE html>
-<!--
-Created using JS Bin
-http://jsbin.com
-
-Copyright (c) 2019 by kehoere (http://jsbin.com/legoraq/2/edit)
-
-Released under the MIT license: http://jsbin.mit-license.org
--->
 <meta name="robots" content="noindex">
 <html>
 <head>
-<meta name="description" content="Exercise 5 Leaflet multiple markers and map links">
+<meta name="description" content="Exercise 5">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>JS Bin</title>
@@ -36,7 +28,6 @@ Released under the MIT license: http://jsbin.mit-license.org
 	<a href="#" id='zoomOut'>Zoom out to level 7</a><br>
 
 	<button id="Ankeny">Visit Ankeny, Iowa</button>
-<<<<<<< HEAD
 	
 <script id="jsbin-javascript">
 var map = L.map('map').setView([42.0, -93.634], 12);
@@ -58,8 +49,8 @@ L.marker([41.983056, -91.668611]).addTo(map)
 //a array list of towns
 var towns = [
 	[42.034722, -93.62, "Ames, Iowa"],
-	[41.401389, -95.010833, "Omaha, Nebraska"],
-	[41.84, -94.1, "Perry, Iowa"]
+	[41.25, -96, "Omaha, Nebraska"],
+	[41.726667, -93.604167, "Ankeny, Iowa"]
 ];
 
 //loop through the array and add a marker for each
@@ -72,24 +63,22 @@ for (var i = 0; i < towns.length; i++) {
 
 //----------Links below the Map----------
 
-//Pan to Frasier
-function frasier() {
-	map.panTo(new L.LatLng(42.12, -93.98));
+//Pan to Cedar Rapids
+function cedarRapids() {
+	map.panTo(new L.LatLng(41.983056, -91.668611));
 }
 
 //set Zoom
 $("#zoomOut").click(function(){
-	map.setZoom(8);
+	map.setZoom(7);
 });
 
 
-//Goldfield Iowa
-$("#goldfield").click(function(){
-	map.setView(new L.LatLng(42.737, -93.923), 13);
+//Ankeny Iowa
+$("#Ankeny").click(function(){
+	map.setView(new L.LatLng(41.726667, -93.604167), 13);
 });
 </script>
-=======
 
->>>>>>> 10f70b263cb45305d7a7423a5c3f20455e28de6e
 </body>
 </html>
