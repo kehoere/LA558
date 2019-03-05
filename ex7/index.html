@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<meta name="Map Layers and Groups" content="Exercise 7" />
+
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" /> <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+	  
+	  	  
+  <style id="jsbin-css">
+html, body, 
+#map { height: 480px; margin: 0; padding: 0; }
+</style>
+</head>
+  <body>
+<div id="map"></div>
+  <script id="jsbin-javascript">
+console.clear();
+//Base Layers
+var OSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 20
+});
+var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+	maxZoom: 17,
+	attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+});
+var MapQuestOpen_Aerial = L.tileLayer('http://oatile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg', {
+	attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency',
+	subdomains: '1234'
+});
+var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
+var Hydda_Base = L.tileLayer('https://{s}.tile.openstreetmap.se/hydda/base/{z}/{x}/{y}.png', {
+	maxZoom: 18,
+	attribution: 'Tiles courtesy of <a href="http://openstreetmap.se/" target="_blank">OpenStreetMap Sweden</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+});
+// Overlay layers
+var NASAGIBS_ModisTerraLSTDay = L.tileLayer('https://map1.vis.earthdata.nasa.gov/wmts-webmerc/MODIS_Terra_Land_Surface_Temp_Day/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.{format}', {
+	attribution: 'Imagery provided by services from the Global Imagery Browse Services (GIBS), operated by the NASA/GSFC/Earth Science Data and Information System (<a href="https://earthdata.nasa.gov">ESDIS</a>) with funding provided by NASA/HQ.',
+	bounds: [[-85.0511287776, -179.999999975], [85.0511287776, 179.999999975]],
+	minZoom: 1,
+	maxZoom: 7,
+	format: 'png',
+	time: '',
+	tilematrixset: 'GoogleMapsCompatible_Level',
+	opacity: 0.75
+});
+var Stamen_TonerLines = L.tileLayer('http://{s}.tile.stamen.com/toner-lines/{z}/{x}/{y}.png', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+	subdomains: 'abcd',
+	minZoom: 0,
+	maxZoom: 20
+});
+//Vector and Marker Layers
+var yellowstone = L.marker([44.6, -110.5]).bindPopup('Yellowstone National Park'),
+    glacier    = L.marker([48.696667, -113.718333]).bindPopup('Glacier National Park'),
+    joshuaTree    = L.marker([33.79, -115.9]).bindPopup('Joshua Tree National Park'),
+    arches    = L.marker([38.68333, -109.56667]).bindPopup('Arches National Park');
+var polygon = L.polygon([
+    [33, -118],
+    [33, -108],
+    [50, -108],
+	[50, -118]
+],{
+    color: 'red',
+    fillColor: 'red',
+    fillOpacity: 0.3
+});
+var pointA = new L.LatLng(48.696667, -113.718333);
+var pointB = new L.LatLng(44.6, -110.5);
+var pointC = new L.LatLng(38.68333, -109.56667);
+var pointD = new L.LatLng(33.79, -115.9);
+var pointList = [pointA, pointB, pointC, pointD];
+var myPolyline = new L.Polyline(pointList, {
+    color: 'yellow',
+    weight: 3,
+    opacity: 1,
+    smoothFactor: 1
+});
+var Features = L.layerGroup([yellowstone, glacier, joshuaTree, arches, polygon]);
+//create the map
+var map = L.map('map', {
+    		center: new L.LatLng(41.5, -103),
+    		zoom: 4,
+    		layers: [OSM, NASAGIBS_ModisTerraLSTDay, Features]
+		});
+//layer control
+		var baseMaps = {
+			"OpenStreetMap": OSM,
+			"OpenTopoMap": OpenTopoMap, "Esri_WorldImagery": Esri_WorldImagery,
+      "Hydda_Base": Hydda_Base
+		
+    };
+       		
+		var overlayMaps = {
+			"Stamen TonerLines": Stamen_TonerLines,
+			"Nasa Land Surface Temperature": NASAGIBS_ModisTerraLSTDay,
+      "Features": Features,
+      "Polyline": myPolyline
+			
+		};
+	
+		L.control.layers(baseMaps, overlayMaps).addTo(map);
+</script>
+
+
+<script id="jsbin-source-css" type="text/css">html, body, 
+#map { height: 480px; margin: 0; padding: 0; }</script>
+
+<script id="jsbin-source-javascript" type="text/javascript">console.clear();
+//Base Layers
+var OSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 20
+});
+var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+	maxZoom: 17,
+	attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+});
+var MapQuestOpen_Aerial = L.tileLayer('http://oatile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg', {
+	attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency',
+	subdomains: '1234'
+});
+var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
+var Hydda_Base = L.tileLayer('https://{s}.tile.openstreetmap.se/hydda/base/{z}/{x}/{y}.png', {
+	maxZoom: 18,
+	attribution: 'Tiles courtesy of <a href="http://openstreetmap.se/" target="_blank">OpenStreetMap Sweden</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+});
+// Overlay layers
+var NASAGIBS_ModisTerraLSTDay = L.tileLayer('https://map1.vis.earthdata.nasa.gov/wmts-webmerc/MODIS_Terra_Land_Surface_Temp_Day/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.{format}', {
+	attribution: 'Imagery provided by services from the Global Imagery Browse Services (GIBS), operated by the NASA/GSFC/Earth Science Data and Information System (<a href="https://earthdata.nasa.gov">ESDIS</a>) with funding provided by NASA/HQ.',
+	bounds: [[-85.0511287776, -179.999999975], [85.0511287776, 179.999999975]],
+	minZoom: 1,
+	maxZoom: 7,
+	format: 'png',
+	time: '',
+	tilematrixset: 'GoogleMapsCompatible_Level',
+	opacity: 0.75
+});
+var Stamen_TonerLines = L.tileLayer('http://{s}.tile.stamen.com/toner-lines/{z}/{x}/{y}.png', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+	subdomains: 'abcd',
+	minZoom: 0,
+	maxZoom: 20
+});
+//Vector and Marker Layers
+var yellowstone = L.marker([44.6, -110.5]).bindPopup('Yellowstone National Park'),
+    glacier    = L.marker([48.696667, -113.718333]).bindPopup('Glacier National Park'),
+    joshuaTree    = L.marker([33.79, -115.9]).bindPopup('Joshua Tree National Park'),
+    arches    = L.marker([38.68333, -109.56667]).bindPopup('Arches National Park');
+var polygon = L.polygon([
+    [33, -118],
+    [33, -108],
+    [50, -108],
+	[50, -118]
+],{
+    color: 'red',
+    fillColor: 'red',
+    fillOpacity: 0.3
+});
+var pointA = new L.LatLng(48.696667, -113.718333);
+var pointB = new L.LatLng(44.6, -110.5);
+var pointC = new L.LatLng(38.68333, -109.56667);
+var pointD = new L.LatLng(33.79, -115.9);
+var pointList = [pointA, pointB, pointC, pointD];
+var myPolyline = new L.Polyline(pointList, {
+    color: 'yellow',
+    weight: 3,
+    opacity: 1,
+    smoothFactor: 1
+});
+var Features = L.layerGroup([yellowstone, glacier, joshuaTree, arches, polygon]);
+//create the map
+var map = L.map('map', {
+    		center: new L.LatLng(41.5, -103),
+    		zoom: 4,
+    		layers: [OSM, NASAGIBS_ModisTerraLSTDay, Features]
+		});
+//layer control
+		var baseMaps = {
+			"OpenStreetMap": OSM,
+			"OpenTopoMap": OpenTopoMap, "Esri_WorldImagery": Esri_WorldImagery,
+      "Hydda_Base": Hydda_Base
+		
+    };
+       		
+		var overlayMaps = {
+			"Stamen TonerLines": Stamen_TonerLines,
+			"Nasa Land Surface Temperature": NASAGIBS_ModisTerraLSTDay,
+      "Features": Features,
+      "Polyline": myPolyline
+			
+		};
+	
+		L.control.layers(baseMaps, overlayMaps).addTo(map);
+		
+</script></body>
+</html>
