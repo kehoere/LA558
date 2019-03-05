@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="description" content="assignment 2">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Assignment 2</title>
+  <style>
+    body {
+        width: 80%;
+        margin: 0 auto;
+        font-family: sans-serif;
+        background-color: darkseagreen; 
+    }
+    h1 {
+        font-size: 2em;
+        font-style: normal;
+        text-align: left;
+        color: whitesmoke;
+    }
+    h2 {
+        font-size: .75em;
+        font-style: normal;
+        color: whitesmoke;
+        text-align: right;
+    }
+    h3 {
+        font-size: .7em;
+        font-style: normal;
+        color: whitesmoke;
+        text-align: right;
+    }
+    p {
+        font-size: 1em;
+        line-height: 1.5;
+        text-align: justify;
+        width: 90;
+        color: whitesmoke;
+    }
+    </style>
+  
+  <h1> Assignment 2</h1>
+	
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" /> <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+	
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+	
+<style id="jsbin-css">
+#map {
+     width: 500px;
+     height: 400px;
+}
+</style>
+</head>
+<body>
+  
+<div id='map'></div>
+<br>
+  <p>
+  <button type="button" id="getZoom">Get Zoom</button> the Zoom is <span id="theZoom">-</span>
+<br>
+  <br>
+  Map: The main focal point is the city of Omaha, Nebraska. This is where my career took a leap into the future for zoological design.  
+<br>
+  <br>
+  Popup: The popup location I chose to emphasize is located at the Henry Doorly Zoo and Aquarium. This is the location of the first research component I conducted relating to zoological design in my field of landscape architecture. 
+  <br>
+<br>
+  Interaction: By clicking the popup, you can access a hyperlink to a fun fact about the zoo in Omaha, Nebraska. 
+  <br>
+  <br>
+  The two buttons below, Denver Zoo and Philadelphia Zoo, are locations where I have continued to grow my knowledge of zoological design throughout my graduate career.
+      <br>
+<button type="button" id="DenverZoo">Denver Zoo</button>
+      <br>
+  <button type="button" id="PhiladelphiaZoo">Philadelphia Zoo</button><br>
+  
+    <h3>March 5, 2019</h3>
+    <h3>by Rachel Kehoe</h3>
+  </p>
+<script id="jsbin-javascript">
+var map = L.map('map').setView([41.25, -96], 10);
+L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+ $('#getZoom').click(function () {
+        x = map.getZoom();
+        $('#theZoom').html(x);
+    });
+    $('#DenverZoo').click(function () {
+        c = new L.LatLng(39.75, -104.95);
+        map.setView(c, 14);
+    });
+    $('#PhiladelphiaZoo').click(function () {
+        map.setView([39.974506, -75.195678], 12);
+    });
+var marker = L.marker([41.224703, -95.928701]).addTo(map);
+marker.bindPopup($('<a href="#" class="speciallink">Henry Doorly Zoo and Aquarium </a>').click(function() {
+    alert("Did you know: there are over 160 acres of plants, animals and unique habitats from around the world at the Henry Doorly Zoo and Aquarium?!");
+	//Add code here to complete when the hyperlink is pressed.
+})[0]);
+</script>
+
+
+<script id="jsbin-source-css" type="text/css">#map {
+     width: 500px;
+     height: 400px;
+}</script>
+
+<script id="jsbin-source-javascript" type="text/javascript">var map = L.map('map').setView([41.25, -96], 10);
+L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+ $('#getZoom').click(function () {
+        x = map.getZoom();
+        $('#theZoom').html(x);
+    });
+    $('#DenverZoo').click(function () {
+        c = new L.LatLng(39.75, -104.95);
+        map.setView(c, 14);
+    });
+    $('#PhiladelphiaZoo').click(function () {
+        map.setView([39.974506, -75.195678], 12);
+    });
+var marker = L.marker([41.224703, -95.928701]).addTo(map);
+marker.bindPopup($('<a href="#" class="speciallink">Henry Doorly Zoo and Aquarium </a>').click(function() {
+    alert("Did you know: there are over 160 acres of plants, animals and unique habitats from around the world at the Henry Doorly Zoo and Aquarium?!");
+	//Add code here to complete when the hyperlink is pressed.
+})[0]);
+</script></body>
+</html>
