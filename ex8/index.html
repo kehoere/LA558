@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<meta name="exercise 8" content="exercise 8" />
+    <style>
+          h1 {
+        font-size: 1.5em;
+        font: arial, helvetica, sans-serif;
+        text-align: center;
+        color: purple;
+           
+    </style> 
+    
+    <h1>Exercise 8:<br>
+      top 10 cities to live in the USA</h1>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" /> <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+	  
+  <style id="jsbin-css">
+html, body, 
+#map { height: 480px; margin: 0; padding: 0; }
+.legend {
+    line-height: 10px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 20px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.8;
+}
+.info {
+    padding: 6px 8px;
+    font: 10px/20px Arial, Helvetica, sans-serif;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+/*
+box-shadow: none|h-shadow v-shadow blur spread color |inset|initial|inherit;
+https://www.w3schools.com/cssref/css3_pr_box-shadow.asp
+*/
+</style>
+</head>
+  <body>
+<div id="map"></div>
+  <script id="jsbin-javascript">
+console.clear();
+var map = L.map('map').setView([42, -97], 3);
+// add an OpenStreetMap tile layer
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+  maxZoom: 18
+}).addTo(map);
+var myPoints = [
+  ["73", 47.609722, -122.333056, "high density"],
+  ["42", 44.983333, -93.266667, "medium density"],
+  ["70", 38.904722, -77.016389, "high density"],
+  ["19", 34.73, -86.585, "low density"],
+  ["64", 45.52, -122.681944, "high density"],
+  ["8.5", 36.0625, -94.1575, "low density"],
+  ["21", 41.590833, -93.620833, "low density"],
+  ["70", 39.76185, -104.881105, "high density"],
+  ["46", 38.833889, -104.825278, "medium density"],
+  ["95", 30.266667, -97.733333, "high density"],
+];
+//set color of marker
+function getColor(d) {
+  return d == 'high density' ? '#660066' :
+    d == 'medium density' ? "#B558A8" :
+    d == 'low density' ? "#EEBDE7" :
+    "#FFFFFF"; //white
+}
+for (var i = 0; i < myPoints.length; i++) {
+  marker = new L.circleMarker([myPoints[i][1], myPoints[i][2]], {
+      radius: myPoints[i][0] / 10 + 5,
+      fillColor: getColor(myPoints[i][3]),
+      color: "#000",
+      weight: 0,
+      opacity: 1,
+      fillOpacity: 0.9
+    })
+    .bindPopup("Category: " + myPoints[i][3]) //note there is no comma here
+    .addTo(map);
+}
+var legend = L.control({
+  position: 'topright'
+	//Possible values are 'topleft', 'topright', 'bottomleft' or 'bottomright'
+});
+legend.onAdd = function(map) {
+  var div = L.DomUtil.create('div', 'info legend'),
+    cities = ['high density', 'medium density', 'low density'],
+    labels = [''];
+  // loop through items and generate a label with a colored square for each
+  for (var i = 0; i < cities.length; i++) {
+    div.innerHTML +=
+      '<i style="background:' + getColor(cities[i]) + ' "></i> ' +
+      cities[i] + (cities ? '' + '<br>' : '');
+  }
+  return div;
+};
+legend.addTo(map);
+</script>
+
+
+<script id="jsbin-source-css" type="text/css">html, body, 
+#map { height: 480px; margin: 0; padding: 0; }
+.legend {
+    line-height: 10px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 20px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.8;
+}
+.info {
+    padding: 6px 8px;
+    font: 10px/20px Arial, Helvetica, sans-serif;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+/*
+box-shadow: none|h-shadow v-shadow blur spread color |inset|initial|inherit;
+https://www.w3schools.com/cssref/css3_pr_box-shadow.asp
+*/</script>
+
+<script id="jsbin-source-javascript" type="text/javascript">console.clear();
+var map = L.map('map').setView([42, -97], 3);
+// add an OpenStreetMap tile layer
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+  maxZoom: 18
+}).addTo(map);
+var myPoints = [
+  ["73", 47.609722, -122.333056, "high density"],
+  ["42", 44.983333, -93.266667, "medium density"],
+  ["70", 38.904722, -77.016389, "high density"],
+  ["19", 34.73, -86.585, "low density"],
+  ["64", 45.52, -122.681944, "high density"],
+  ["8.5", 36.0625, -94.1575, "low density"],
+  ["21", 41.590833, -93.620833, "low density"],
+  ["70", 39.76185, -104.881105, "high density"],
+  ["46", 38.833889, -104.825278, "medium density"],
+  ["95", 30.266667, -97.733333, "high density"],
+];
+//set color of marker
+function getColor(d) {
+  return d == 'high density' ? '#660066' :
+    d == 'medium density' ? "#B558A8" :
+    d == 'low density' ? "#EEBDE7" :
+    "#FFFFFF"; //white
+}
+for (var i = 0; i < myPoints.length; i++) {
+  marker = new L.circleMarker([myPoints[i][1], myPoints[i][2]], {
+      radius: myPoints[i][0] / 10 + 5,
+      fillColor: getColor(myPoints[i][3]),
+      color: "#000",
+      weight: 0,
+      opacity: 1,
+      fillOpacity: 0.9
+    })
+    .bindPopup("Category: " + myPoints[i][3]) //note there is no comma here
+    .addTo(map);
+}
+var legend = L.control({
+  position: 'topright'
+	//Possible values are 'topleft', 'topright', 'bottomleft' or 'bottomright'
+});
+legend.onAdd = function(map) {
+  var div = L.DomUtil.create('div', 'info legend'),
+    cities = ['high density', 'medium density', 'low density'],
+    labels = [''];
+  // loop through items and generate a label with a colored square for each
+  for (var i = 0; i < cities.length; i++) {
+    div.innerHTML +=
+      '<i style="background:' + getColor(cities[i]) + ' "></i> ' +
+      cities[i] + (cities ? '' + '<br>' : '');
+  }
+  return div;
+};
+legend.addTo(map);</script></body>
+</html>
