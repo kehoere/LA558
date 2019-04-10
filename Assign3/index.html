@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Assign3</title>
+    
+    <style>
+    body {
+        width: 80%;
+        margin: 0 auto;
+        font-family: sans-serif;
+        background-color: white; 
+    }
+    h1 {
+        font-size: 2em;
+        font-style: normal;
+        text-align: left;
+        color: darkorange;
+    }
+    h2 {
+        font-size: .75em;
+        font-style: normal;
+        color: mediumpurple;
+        text-align: right;
+    }
+    h3 {
+        font-size: .7em;
+        font-style: normal;
+        color: mediumpurple;
+        text-align: right;
+    }
+    p {
+        font-size: 1em;
+        line-height: 1.5;
+        text-align: justify;
+        width: 80;
+        color: mediumpurple;
+    }
+    </style>
+
+  <h1> Zoos in the USA </h1>
+    
+   
+  
+</head>
+<body>
+  
+  <p> Following my passion of zoological design, I chose to learn about the top three zoos in the United States: San Diego Zoo, Lincoln Park Zoo, and St. Louis Zoo. As you can see in the chart and map below, the size of the zoo location depicts how many visitors are attracted to the site, how many animals the site can inhabit, and what major roads are able to access the site. By understanding these features, zoological design can take the next step towards increasing attendees, increasing animal habitats, and increading traffic and awareness in the site location.
+  </p>
+  
+    
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+<div id="container" style="min-width: 360px; height: 400px; margin: 0 auto"></div>
+  
+  <br>
+  <br>
+  
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" /> <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+	  
+	  	  
+  <style id="jsbin-css">
+html, body, 
+#map { height: 480px; margin: 0; padding: 0; }
+</style>
+<style id="jsbin-css">
+html, body, 
+#map { height: 480px; margin: 0; padding: 0; }
+</style>
+</head>
+  <body>
+<div id="map"></div>
+  <script id="jsbin-javascript">
+console.clear();
+//Base Layers
+var OSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 25
+});
+var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
+// Overlay layers
+var OpenRailwayMap = L.tileLayer('https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | Map style: &copy; <a href="https://www.OpenRailwayMap.org">OpenRailwayMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+});
+var Stamen_TonerLines = L.tileLayer('http://{s}.tile.stamen.com/toner-lines/{z}/{x}/{y}.png', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+	subdomains: 'abcd',
+	minZoom: 0,
+	maxZoom: 25
+});
+//------ Marker Layers stuff
+var sanDiego = L.marker([32.736111, -117.151389]).bindPopup('San Diego Zoo'),
+    Lincoln    = L.marker([41.921375, -87.633841]).bindPopup('Lincoln Park Zoo'),
+    stLouis    = L.marker([38.635, -90.29]).bindPopup('St. Louis Zoo');
+var Zoos = L.layerGroup([sanDiego, Lincoln, stLouis]);
+//create the map
+var map = L.map('map', {
+    		center: new L.LatLng(42, -98),
+    		zoom: 4,
+    		layers: [OSM, OpenRailwayMap, Zoos]
+		});
+		//layer control
+		var baseMaps = {
+			"Open Street Map": OSM,
+			"Esri World Imagery": Esri_WorldImagery};
+       		
+		var overlayMaps = {
+			"Stamen TonerLines": Stamen_TonerLines,
+			"Zoo Locations": Zoos,
+			"Open Railway Map": OpenRailwayMap
+			
+		};
+	
+		L.control.layers(baseMaps, overlayMaps).addTo(map);
+</script>
+
+
+<script id="jsbin-source-css" type="text/css">html, body, 
+#map { height: 480px; margin: 0; padding: 0; }</script>
+
+<script id="jsbin-source-javascript" type="text/javascript">console.clear();
+//Base Layers
+var OSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 25
+});
+var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
+// Overlay layers
+var OpenRailwayMap = L.tileLayer('https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | Map style: &copy; <a href="https://www.OpenRailwayMap.org">OpenRailwayMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+});
+var Stamen_TonerLines = L.tileLayer('http://{s}.tile.stamen.com/toner-lines/{z}/{x}/{y}.png', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+	subdomains: 'abcd',
+	minZoom: 0,
+	maxZoom: 25
+});
+//------ Marker Layers stuff
+var sanDiego = L.marker([32.736111, -117.151389]).bindPopup('San Diego Zoo'),
+    Lincoln    = L.marker([41.921375, -87.633841]).bindPopup('Lincoln Park Zoo'),
+    stLouis    = L.marker([38.635, -90.29]).bindPopup('St. Louis Zoo');
+var Zoos = L.layerGroup([sanDiego, Lincoln, stLouis]);
+//create the map
+var map = L.map('map', {
+    		center: new L.LatLng(42, -98),
+    		zoom: 4,
+    		layers: [OSM, OpenRailwayMap, Zoos]
+		});
+		//layer control
+		var baseMaps = {
+			"Open Street Map": OSM,
+			"Esri World Imagery": Esri_WorldImagery};
+       		
+		var overlayMaps = {
+			"Stamen TonerLines": Stamen_TonerLines,
+			"Zoo Locations": Zoos,
+			"Open Railway Map": OpenRailwayMap
+			
+		};
+	
+		L.control.layers(baseMaps, overlayMaps).addTo(map);
+		
+</script>
+      
+        
+<script id="jsbin-javascript">
+//HighChart
+Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Top 3 Zoos in the USA'
+    },
+    xAxis: {
+        categories: [
+            'San Diego Zoo',
+            'Lincoln Park Zoo',
+            'St. Louis Zoo'
+        ]
+    },
+    yAxis: [{
+        min: 0,
+        title: {
+            text: 'Visitors'
+        }
+    }, {
+        title: {
+            text: 'Animals'
+        },
+        opposite: true
+    }],
+    legend: {
+        shadow: false
+    },
+    tooltip: {
+        shared: true
+    },
+    plotOptions: {
+        column: {
+            grouping: false,
+            shadow: false,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Visitors',
+        color: 'rgba(165,170,217,1)',
+        data: [3.2, 3, 2.9],
+        tooltip: {
+        valueSuffix: ' million'
+        },
+        
+        pointPadding: 0.3,
+        pointPlacement: -0.2
+    }, {
+        name: 'Animals',
+        color: 'rgba(248,161,63,1)',
+        data: [3700, 1250, 20000],
+        tooltip: {
+            valueSuffix: ' '
+        },
+        pointPadding: 0.3,
+        pointPlacement: 0.2,
+        yAxis: 1
+    }]
+});
+</script>
+
+
+<script id="jsbin-source-css" type="text/css">html, body, 
+#map { height: 480px; margin: 0; padding: 0; }</script>
+
+<script id="jsbin-source-javascript" type="text/javascript">
+//HighChart
+Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Top 3 Zoos in the USA'
+    },
+    xAxis: {
+        categories: [
+            'San Diego Zoo',
+            'Lincoln Park Zoo',
+            'St. Louis Zoo'
+        ]
+    },
+    yAxis: [{
+        min: 0,
+        title: {
+            text: 'Visitors'
+        }
+    }, {
+        title: {
+            text: 'Animals'
+        },
+        opposite: true
+    }],
+    legend: {
+        shadow: false
+    },
+    tooltip: {
+        shared: true
+    },
+    plotOptions: {
+        column: {
+            grouping: false,
+            shadow: false,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Visitors',
+        color: 'rgba(165,170,217,1)',
+        data: [3.2, 3, 2.9],
+        tooltip: {
+        valueSuffix: ' million'
+        },
+        
+        pointPadding: 0.3,
+        pointPlacement: -0.2
+    }, {
+        name: 'Animals',
+        color: 'rgba(248,161,63,1)',
+        data: [3700, 1250, 20000],
+        tooltip: {
+            valueSuffix: ' '
+        },
+        pointPadding: 0.3,
+        pointPlacement: 0.2,
+        yAxis: 1
+    }]
+});</script>
+      <br>
+      
+         <h2>Due: April 9, 2019</h2>
+    <h3>by Rachel Kehoe</h3>
+    
+    </body>
+</html>
