@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Final: Visitor Expectations</title>
+</head>
+<body>
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+<div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+
+  
+<script id="jsbin-javascript">
+Highcharts.chart('container', {
+    chart: {
+        type: 'bar'
+    },
+    title: {
+        text: 'Visitor Expectations at Zoos'
+    },
+    xAxis: {
+        categories: ['Animal Encounters', 'Behind the Scenes', 'Education', 'Playground/Splash Pad', 'Restaurant']
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Availability of Activities'
+        }
+    },
+    legend: {
+        reversed: true
+    },
+    plotOptions: {
+        series: {
+            stacking: 'normal'
+        }
+    },
+    series: [{
+        name: 'San Diego Zoo',
+        data: [3, 5, 4, 3, 18]
+    }, {
+        name: 'Omahas Henry Doorly Zoo and Aquarium',
+        data: [7, 4, 8, 2, 11]
+    }, {
+        name: 'Houston Zoo',
+        data: [13, 2, 5, 2, 5]
+    }, {
+        name: 'Memphis Zoo',
+        data: [6, 0, 6, 0, 8]
+    },  {
+        name: 'Bronx Zoo',
+        data: [10, 0, 4, 2, 7]
+    }]
+});
+</script>
+
+
+
+<script id="jsbin-source-javascript" type="text/javascript">Highcharts.chart('container', {
+    chart: {
+        type: 'bar'
+    },
+    title: {
+        text: 'Visitor Expectations at Zoos'
+    },
+    xAxis: {
+        categories: ['Animal Encounters', 'Behind the Scenes', 'Education', 'Playground/Splash Pad', 'Restaurant']
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Availability of Activities'
+        }
+    },
+    legend: {
+        reversed: true
+    },
+    plotOptions: {
+        series: {
+            stacking: 'normal'
+        }
+    },
+    series: [{
+        name: 'San Diego Zoo',
+        data: [3, 5, 4, 3, 18]
+    }, {
+        name: 'Omahas Henry Doorly Zoo and Aquarium',
+        data: [7, 4, 8, 2, 11]
+    }, {
+        name: 'Houston Zoo',
+        data: [13, 2, 5, 2, 5]
+    }, {
+        name: 'Memphis Zoo',
+        data: [6, 0, 6, 0, 8]
+    },  {
+        name: 'Bronx Zoo',
+        data: [10, 0, 4, 2, 7]
+    }]
+});</script></body>
+</html>
