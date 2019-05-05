@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta name="final map" />
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+  <style id="jsbin-css">
+html, body, 
+#map { height: 480px; margin: 0; padding: 0; }
+</style>
+</head>
+  
+  <body>
+<div id="map"></div>
+  <script id="jsbin-javascript">
+console.clear();
+//Base Layers
+var OSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 14
+});
+var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+	maxZoom: 17,
+	attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+});
+var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
+// Overlay layers
+var Stamen_TonerLines = L.tileLayer('http://{s}.tile.stamen.com/toner-lines/{z}/{x}/{y}.png', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+	subdomains: 'abcd',
+	minZoom: 0,
+	maxZoom: 20
+});
+//create the map
+var map = L.map('map', {
+  center: new L.LatLng(42.0908, -93.6208),
+  zoom: 4,
+  layers: [OSM, Stamen_TonerLines]
+});
+//------ individual city markers
+var sandiego    = L.marker([32.736111, -117.151389]).bindPopup('San Diego Zoo').addTo(map),
+    omaha    = L.marker([41.224703, -95.928701]).bindPopup('Omaha Henry Doorly Zoo and Aquarium').addTo(map),
+    houston    = L.marker([29.716132, -95.390569]).bindPopup('Houston Zoo').addTo(map),
+    memphis = L.marker([35.15, -89.9943]).bindPopup('Memphis Zoo').addTo(map),
+    bronx = L.marker([40.850581, -73.87538]).bindPopup('Bronx Zoo').addTo(map);
+    
+//layer control
+var baseMaps = {
+  "Open Street Map": OSM,
+  "Topography Map": OpenTopoMap,
+  "ESRI Map": Esri_WorldImagery,
+  
+};
+var overlayMaps = {
+  "Stamen Lines": Stamen_TonerLines,
+  "San Diego Zoo": sandiego,
+  "Omaha's Henry Doorly Zoo and Aquarium": omaha,
+  "Houston Zoo": houston,
+  "Memphis Zoo": memphis,
+  "Bronx Zoo": bronx
+};
+L.control.layers(baseMaps, overlayMaps).addTo(map);
+</script>
+
+
+<script id="jsbin-source-css" type="text/css">html, body, 
+#map { height: 480px; margin: 0; padding: 0; }</script>
+
+<script id="jsbin-source-javascript" type="text/javascript">console.clear();
+//Base Layers
+var OSM = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 14
+});
+var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+	maxZoom: 17,
+	attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+});
+var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
+// Overlay layers
+var Stamen_TonerLines = L.tileLayer('http://{s}.tile.stamen.com/toner-lines/{z}/{x}/{y}.png', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+	subdomains: 'abcd',
+	minZoom: 0,
+	maxZoom: 20
+});
+//create the map
+var map = L.map('map', {
+  center: new L.LatLng(42.0908, -93.6208),
+  zoom: 4,
+  layers: [OSM, Stamen_TonerLines]
+});
+//------ individual city markers
+var sandiego    = L.marker([32.736111, -117.151389]).bindPopup('San Diego Zoo').addTo(map),
+    omaha    = L.marker([41.224703, -95.928701]).bindPopup('Omaha Henry Doorly Zoo and Aquarium').addTo(map),
+    houston    = L.marker([29.716132, -95.390569]).bindPopup('Houston Zoo').addTo(map),
+    memphis = L.marker([35.15, -89.9943]).bindPopup('Memphis Zoo').addTo(map),
+    bronx = L.marker([40.850581, -73.87538]).bindPopup('Bronx Zoo').addTo(map);
+    
+//layer control
+var baseMaps = {
+  "Open Street Map": OSM,
+  "Topography Map": OpenTopoMap,
+  "ESRI Map": Esri_WorldImagery,
+  
+};
+var overlayMaps = {
+  "Stamen Lines": Stamen_TonerLines,
+  "San Diego Zoo": sandiego,
+  "Omaha's Henry Doorly Zoo and Aquarium": omaha,
+  "Houston Zoo": houston,
+  "Memphis Zoo": memphis,
+  "Bronx Zoo": bronx
+};
+L.control.layers(baseMaps, overlayMaps).addTo(map);
+</script></body>
+</html>
