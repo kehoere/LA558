@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>final part 1</title>
+</head>
+<body>
+    
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+  
+  
+  
+<script id="jsbin-javascript">
+// Build the chart
+Highcharts.chart('container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Number of Animal Species'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.y}</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            },
+            showInLegend: true
+        }
+    },
+    series: [{
+        name: 'Amount of Animal Species',
+        colorByPoint: true,
+        data: [{
+            name: 'San Diego Zoo',
+            y: 650,
+            sliced: true,
+            selected: true
+        }, {
+            name: 'Omahas Henry Doorly Zoo and Aquarium',
+            y: 962
+        }, {
+            name: 'Houston Zoo',
+            y: 900
+        }, {
+            name: 'Memphis Zoo',
+            y: 500
+        }, {
+            name: 'Bronx Zoo',
+            y: 650
+        }]
+    }]
+});
+</script>
+
+
+
+<script id="jsbin-source-javascript" type="text/javascript">// Build the chart
+Highcharts.chart('container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Number of Animal Species'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.y}</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            },
+            showInLegend: true
+        }
+    },
+    series: [{
+        name: 'Amount of Animal Species',
+        colorByPoint: true,
+        data: [{
+            name: 'San Diego Zoo',
+            y: 650,
+            sliced: true,
+            selected: true
+        }, {
+            name: 'Omahas Henry Doorly Zoo and Aquarium',
+            y: 962
+        }, {
+            name: 'Houston Zoo',
+            y: 900
+        }, {
+            name: 'Memphis Zoo',
+            y: 500
+        }, {
+            name: 'Bronx Zoo',
+            y: 650
+        }]
+    }]
+});</script>
+</body>
+</html>
+
+
+
+
+
